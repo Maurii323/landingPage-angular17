@@ -1,0 +1,21 @@
+<!-- si ya cargaron los datos, los muestra -->
+@if (!loading) {
+  <div class="card container mt-4 mb-4" style="width: 18rem;">
+    <img src="{{product?.image}}" class="card-img-top" alt="{{product?.title}}">
+    <div class="card-body">
+      <h5 class="card-title">{{product?.title}}</h5>
+      <p class="card-text">{{product?.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">price: {{product?.price | currency}}</li>
+      <li class="list-group-item">category: {{product?.category}}</li>
+      <li class="list-group-item">rate: {{product?.rating?.rate}}</li>
+      <li class="list-group-item">count: {{product?.rating?.count}}</li>
+    </ul>
+  </div>
+}
+    
+<!-- Si todavia no cargaron los datos, muestra esto -->
+@if (loading) {
+  <i Style="color : blue">Loading...</i>
+}

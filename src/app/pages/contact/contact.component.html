@@ -1,0 +1,45 @@
+<!-- formulario reactico -->
+<div class="container">
+    <form [formGroup]="formularioContacto" (ngSubmit)="enviar()">
+        <div class="mb-3">
+            <label for="name" class="form-label">name</label>
+            <input type="text" class="form-control" id="name" formControlName="name"
+            [ngClass]="{'is-invalid': hasErrors('name','required') || hasErrors('name','minlength')}">  <!-- si hay error añade esa clase-->
+            <!-- errores de validacion -->
+            @if(hasErrors('name','required')){
+                <p class="text-danger"> You have to complete this field</p>
+            }
+            @if(hasErrors('name','minlength')){
+                <p class="text-danger"> name must have at least 3 characters </p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email"
+            [ngClass]="{'is-invalid': hasErrors('email','required') || hasErrors('email','email')}" >
+
+            @if(hasErrors('email','email')){
+                    <p class="text-danger"> invalid email format</p>
+            }
+            @if(hasErrors('email','required')){
+                    <p class="text-danger"> You have to complete this field</p>
+            }
+        </div>
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="3" formControlName="message"
+            [ngClass]="{'is-invalid': hasErrors('message','required') || hasErrors('message','minlength')}"></textarea>
+
+            @if(hasErrors('message','required')){
+                <p class="text-danger"> You have to complete this field</p>
+            }
+            @if(hasErrors('message','minlength')){
+                <p class="text-danger"> Message must have at least 10 characters</p>
+            }
+        </div>
+
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>
